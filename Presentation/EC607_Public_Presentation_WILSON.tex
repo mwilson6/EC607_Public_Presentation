@@ -1,0 +1,240 @@
+\documentclass{beamer}
+\usetheme{Boadilla}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{breqn}
+\usepackage{wrapfig}
+\usepackage{floatflt}
+
+\title{EC607 Public Presentation}
+\author{Melissa Wilson}
+\institute{University of Oregon}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+{\bf ``The Impact of Family Income on Child Achievement: Evidence from the Earned Income Tax Credit''} \\
+Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
+\end{frame}
+
+
+\section{Introduction}
+
+
+\begin{frame}
+\frametitle{Introduction I}
+\begin{itemize}
+	\item This paper analyzes the effects of income on children's math and reading achievement by exploiting large, nonlinear changes in the Earned Income Tax Credit (EITC)
+	\item Expansions of the EITC in the late 1980s and 1990s provide an exogenous source of variation in income, so the authors use this to overcome the problems caused by the endogeneity of income and identify true causal effects
+	\item Use a first-differenced child outcome equation and implement IV approach outlined later
+	\item Affirms importance of family income effects on child academic achievement and shows it is heterogeneous across family income levels
+\end{itemize}
+\end{frame}
+
+
+\section{Background}
+
+
+\begin{frame}
+\frametitle{Background}
+\begin{itemize}
+	\item Prior literature shows significant variation in estimated effects of family income on child development
+	\item Estimates are mostly positive and significant, but magnitude changes
+	\item The direction of the relationship may be clear, but the causal relationship has not been identified due to omitted variable bias due to heterogeneous unobservable home-life characteristics 
+	\item Some have used FE in order to overcome this, but they do not control for endogenous transitory shocks
+	\begin{itemize}
+		\item Eg. job loss, promotion, family illness, moving, etc.
+		\item Likely suffer from attenuation bias because income growth is measured noisily
+	\end{itemize} 
+\end{itemize}
+\end{frame}
+
+
+\section{Methodology}
+
+
+\begin{frame}
+\frametitle{Methodology I}
+\begin{itemize}
+	\item Child outcome equation:
+	\begin{equation}
+		y_{ia} = x_i^' \alpha_a + w_{ia}^' \beta + I_{ia}\delta_0 + I_{i, a-1}\delta_1 + \dots + I_{i, a-L}\delta_L + \mu_i + \epsilon_{ia} 
+	\end{equation}
+	for child $i$ at age $a$ with $L$ lags %w are time-varying characteristics and I is net family income
+	\item Taking first differences and setting $L=0$ gives the baseline equation:
+	\begin{equation}
+		\Delta y_{ia} = x_i^' \alpha + \Delta w_{ia}^' \beta + \Delta I_{ia}\delta_0 + \Delta \epsilon_{ia}
+	\end{equation}
+	where $ \alpha \equiv \alpha_a - \alpha_{a-1} $ is the effect of $x_i$ on achievement growth
+	\item Assuming $L=0$ gives the ``contemporaneous effects" of family income on children, ignoring long-run effects
+	\item Authors will allow one- and two-year lags, as well after baseline model
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Methodology II}
+\begin{itemize}
+	\item Primary concern with OLS is that $\Delta \epsilon_{ia}$ may be correlated with entire history of family income
+	\item Employ instrumental the following variable approach
+	\item EITC income is a function of pretax income and taxes:
+	\begin{equation*}
+		I_{ia} = P_{ia} + \chi_a^{s_{ia}}(P_{ia}) - \tau_a^{s_{ia}}(P_{ia})
+	\end{equation*}
+	\item Use IV:  
+	\begin{equation*}
+		\Delta \chi_a^{IV}(P_{i, a-1}) \equiv \chi_a^{s_{i, a-1}}(\hat{E}\left[P_{i,a} | P_{i, a-1} \right]) -  \chi_a^{s_{i, a-1}}(P_{i,a-1})
+	\end{equation*}
+	where $ \hat{E}\left[P_{i,a} | P_{i, a-1} \right] $ is an estimate of pretax income given lagged pretax income
+	\item Also use flexible function of lagged pretax income when instrumenting
+	\item This builds on IV used in Gruber and Saez (2002)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Methodology III}
+	Thus, IV estimation is of the following equation
+	\begin{equation}
+		\Delta y_{ia} = x_i^' \alpha + \Delta w_{ia}^' \beta + \Delta I_{ia} \delta_0 + \Phi(P_{i, a-1}) + \eta_{ia}
+	\end{equation}
+\end{frame}
+
+\begin{frame}{Methodology IV}
+	\begin{itemize}
+		\item Assumes the relationship between child development shocks and lagged pretax income must be stable over time
+		\item Identification from differential changes in EITC schedule over time
+		\item Minor issues with data and model:
+		\begin{enumerate}[(1)]
+			\item Vast majority of EITC recipients receive their credit after filing taxes the following year; thus, authors link test scores with income earned in previous year
+			\item Only observe child achievement scores every other year; thus, authors year two-year differences
+		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+\section{Data}
+
+
+\begin{frame}
+\frametitle{Data I}
+\begin{itemize}
+	\item Use data from National Longitudinal Survey of Youth (NLSY)
+	\item Links children to their mothers and follows families over time, allowing use of child FEs
+	\item Repeated measures of academic achievement and family income
+	\item Oversamples minority families, providing a larger sample of families eligible for EITC
+	\item Note that the NLSY does not provide information on how much a family receives from EITC, so authors must approximate this based on IRS (2002) and Scholz (1994) estimates that 80-87\% of eligible HH receive EITC
+	\item Authors assume full take-up and impute each family's state and federal EITC payment and tax burden using the TAXSIM program from the NBER
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data II}
+\begin{itemize}
+	\item Restrict sample to children observed in at least two consecutive survey years, since using FEs
+	\item Restrict sample to those children whose mothers did not change marital status between test score measures
+	\item Noticeable income increase in sample (increases faster than price levels) and show it is largely attributable to mothers in the sample aging
+	\item Average child age in sample is 11
+	\item Over half of sample are minorites due to oversampling of minorities in NSLY
+\end{itemize}
+\end{frame}
+
+
+\section{Results}
+
+
+\begin{frame}
+\frametitle{OLS Results I}
+	\begin{figure}
+		\includegraphics[scale=0.3]{..\Tables\table1.png} %unit of change in income is $1000
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{OLS Results II}
+	\begin{itemize}
+		\item Possible reasons for discrepancy when including lags:
+		\begin{enumerate}[(1)]
+			\item Measurement error is greater for those measured in differences, so attenuation bias is greater for differenced estimates
+			\item Correlation between unobserved FEs ($\mu_i$) and family income biasing cross-sectional OLS estimates 
+		\end{enumerate}
+		\item Both suffer from OVB due to transitory shocks
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{IV Results I}
+	\begin{figure}
+		\includegraphics[scale=0.4]{..\Tables\table2.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{IV Results II}
+\begin{itemize}
+	\item 
+\end{itemize}
+\end{frame}
+
+
+\section{Robustness}
+
+
+\begin{frame}
+\frametitle{Robustness I}
+\begin{itemize}
+	\item Possible violation of the local continuity assumptions could occur if students knew about the importance of the rank indicators and could manipulate their $S$ score by retaking the SAT test if they knew their score was just below a cutoff value
+	\item This would mean samples of individuals just below and above each cutoff score would no longer be comparable in their average characteristics, such as their unobserved preferences for College X
+	\item These cutoffs were not publicized, so should not be known by students
+	\item Argues no discontinuous change in enrollment rates of admitted applicants just above or below a cutoff caused by financial aid offers that is not due to a change in financial aid
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Robustness II}
+\begin{itemize}
+	\item Little or no sensitivity of estimates when changing individual sensitivity to aid offers
+	\item Quite sensitive to specification of $k(S)$--fourth-order for filers, but first-order for non-filers. Thus, overly restricting $k(S)$ will likely bias results
+	\item Estimate effect using OLS with many individual characteristics--leads to underestimation
+	\item Include all 1989-1993 school years separately and together, estimates relatively stable
+	\item Given his argument for identification and sensitivity checks, van der Klaauw is confident the estimates obtained are causal and can be attributed to the change in financial aid
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}
+	\item Financial aid is an effective tool for competing with other colleges for students
+	\item For FAFSA applicants, the enrollment elasticity with respect to financial aid is 0.86
+	\item For non-FAFSA applicants, the enrollment elasticity with respect to financial aid is 0.13
+	\item Stable over 4-academic-year period
+	\item OLS estimates biased and extremely sensitive to covariates
+	\item Claim that estimation using RD design requires knowledge of the selection process for credible estimation, rather than random selection
+\end{itemize}
+\end{frame}
+
+
+
+\iffalse
+	\begin{columns}
+		\column{0.5\textwidth}
+		\centering
+		%	\begin{figure}
+		%		\includegraphics[scale=0.3]{fig5}
+		%	\end{figure}
+		\column{0.5\textwidth}
+		\centering
+		%	\begin{figure}
+		%		\includegraphics[scale=0.3]{fig6}
+		%	\end{figure}
+	\end{columns}
+\fi
+
+
+
+
+\end{document}
