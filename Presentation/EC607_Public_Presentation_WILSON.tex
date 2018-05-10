@@ -32,7 +32,7 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 \begin{frame}
 \frametitle{Introduction I}
 \begin{itemize}
-	\item This paper analyzes the effects of income on children's math and reading achievement by exploiting large, nonlinear changes in the Earned Income Tax Credit (EITC)
+	\item This paper analyzes the effects of income on children's math and reading achievement by exploiting large, nonlinear changes in the Earned Income Tax Credit (EITC) using a panel of 4,412 children matched to their mothers
 	\item Expansions of the EITC in the late 1980s and 1990s provide an exogenous source of variation in income, so the authors use this to overcome the problems caused by the endogeneity of income and identify true causal effects
 	\item Use a first-differenced child outcome equation and implement IV approach outlined later
 	\item Affirms importance of family income effects on child academic achievement and shows it is heterogeneous across family income levels
@@ -167,16 +167,65 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 \end{frame}
 
 \begin{frame}
-\frametitle{IV Results I}
+\frametitle{IV Estmates: Contemporaneous Effects}
 	\begin{figure}
 		\includegraphics[scale=0.4]{..\Tables\table2.png}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{IV Results II}
+\frametitle{IV Results: Contemporaneous Effects}
 \begin{itemize}
-	\item 
+	\item Table 3 shows raising income by \$1000 increases math-reading achievement by 6 percent of a standard deviation (not very big, but larger than OLS)
+	\item Table 4 takes into account national time trends and changes in state-level school accountability and welfare policies
+	\item Authors use 
+	\begin{enumerate}[A.]
+		\item year dummies to allow for average test scores to vary year to year, so identification of IV estimate comes from differences in predicted EITC across individuals
+		\item linear time trends
+		\item linear time trend and interaction of trend with control function $\Phi()$ to account for relationship between child outcomes and pretax income changing over time
+		\item  and 
+		\item Address changes in state policies
+	\end{enumerate} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{IV Estimates: Contemporaneous Effects and Controls}
+\begin{figure}
+	\includegraphics[scale=0.3]{..\Tables\table3.png} %Table 4
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{IV Estimates: Contemporaneous and Lasting Effects}
+\begin{figure}
+	\includegraphics[scale=0.3]{..\Tables\table4.png} %Table 5
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{IV Results: Contemporaneous and Lasting Effects}
+\begin{itemize}
+	\item In table 5, the authors allow for lasting effects of income changes
+	\item The results are largely consistent, but more precise
+	\item Larger contemporaneous effects than lasting effects
+	\item The simple "contemporaneous effects" model provides reasonable good estimates of short-run effects of income
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{IV Estimates: Heterogeneous Effects}
+\begin{figure}
+	\includegraphics[scale=0.3]{..\Tables\table5.png} %Table 6
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{IV Results: Heterogeneous Effects}
+\begin{itemize}
+	\item The extent of the impact of a \$1000 increase in current income reported as ``Percent in EITC Range" for each subgroup
+	\item Higher socioeconomic status (SES) groups have lower PEITCR
+	\item This is reflected in higher SEs for those groups point estimates
 \end{itemize}
 \end{frame}
 
@@ -187,33 +236,37 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 \begin{frame}
 \frametitle{Robustness I}
 \begin{itemize}
-	\item Possible violation of the local continuity assumptions could occur if students knew about the importance of the rank indicators and could manipulate their $S$ score by retaking the SAT test if they knew their score was just below a cutoff value
-	\item This would mean samples of individuals just below and above each cutoff score would no longer be comparable in their average characteristics, such as their unobserved preferences for College X
-	\item These cutoffs were not publicized, so should not be known by students
-	\item Argues no discontinuous change in enrollment rates of admitted applicants just above or below a cutoff caused by financial aid offers that is not due to a change in financial aid
+	\item Include additional controls for parents and families
+	\item Remove all controls from baseline
+	\item Interact all baseline controls with pretax income and the polynomial lagged pretax income
+	\item Show inclusion of state FEs has little impact
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Robustness II}
 \begin{itemize}
-	\item Little or no sensitivity of estimates when changing individual sensitivity to aid offers
-	\item Quite sensitive to specification of $k(S)$--fourth-order for filers, but first-order for non-filers. Thus, overly restricting $k(S)$ will likely bias results
-	\item Estimate effect using OLS with many individual characteristics--leads to underestimation
-	\item Include all 1989-1993 school years separately and together, estimates relatively stable
-	\item Given his argument for identification and sensitivity checks, van der Klaauw is confident the estimates obtained are causal and can be attributed to the change in financial aid
+	\item NLSY-created weights for initial sample of mothers to weight observations
+	\begin{itemize}
+		\item Smaller point estimate
+		\item Larger SEs
+	\end{itemize}
+	\item Use log total family income as RHS, rather than levels
+	\item Add changes to maternal LFP and hours worked to baseline
 \end{itemize}
 \end{frame}
+
+
+\section{Conclusion}
+
 
 \begin{frame}
 \frametitle{Conclusion}
 \begin{itemize}
-	\item Financial aid is an effective tool for competing with other colleges for students
-	\item For FAFSA applicants, the enrollment elasticity with respect to financial aid is 0.86
-	\item For non-FAFSA applicants, the enrollment elasticity with respect to financial aid is 0.13
-	\item Stable over 4-academic-year period
-	\item OLS estimates biased and extremely sensitive to covariates
-	\item Claim that estimation using RD design requires knowledge of the selection process for credible estimation, rather than random selection
+	\item Exploiting exogenous variation in the EITC, the authors estimate that income has a modest positive contemporaneous effect on child academic achievement
+	\item Baseline estimates imply that a \$1000 increase in family income raises math and reading comprehension scores by 6 percent of a standard deviation
+	\item For the whole sample, this implies an average test score increase of 10 percent of a standard deviation based on EITC payments increasing income of two-child families by \$1670, on average
+	\item Effects are larger for disadvantaged families, younger children, and boys 
 \end{itemize}
 \end{frame}
 
