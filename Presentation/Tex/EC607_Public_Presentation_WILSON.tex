@@ -48,7 +48,7 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 \begin{itemize}
 	\item Prior literature shows significant variation in estimated effects of family income on child development
 	\item Estimates are mostly positive and significant, but magnitude changes
-	\item The direction of the relationship may be clear, but the causal relationship has not been identified due to omitted variable bias due to heterogeneous unobservable home-life characteristics 
+	\item The direction of the relationship may be clear, but the causal relationship has not been identified due to omitted heterogeneous unobservable home-life characteristics 
 	\item Some have used FE in order to overcome this, but they do not control for endogenous transitory shocks
 	\begin{itemize}
 		\item Eg. job loss, promotion, family illness, moving, etc.
@@ -83,17 +83,17 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 \frametitle{Methodology II}
 \begin{itemize}
 	\item Primary concern with OLS is that $\Delta \epsilon_{ia}$ may be correlated with entire history of family income
-	\item Employ instrumental the following variable approach
+	\item Employ the following instrumental variable approach
 	\item EITC income is a function of pretax income and taxes:
 	\begin{equation*}
 		I_{ia} = P_{ia} + \chi_a^{s_{ia}}(P_{ia}) - \tau_a^{s_{ia}}(P_{ia})
 	\end{equation*}
+	where $\chi_a^{s_{ia}}(P_{ia})$ is a flexible function of lagged pretax income
 	\item Use IV:  
 	\begin{equation*}
 		\Delta \chi_a^{IV}(P_{i, a-1}) \equiv \chi_a^{s_{i, a-1}}(\hat{E}\left[P_{i,a} | P_{i, a-1} \right]) -  \chi_a^{s_{i, a-1}}(P_{i,a-1})
 	\end{equation*}
 	where $ \hat{E}\left[P_{i,a} | P_{i, a-1} \right] $ is an estimate of pretax income given lagged pretax income
-	\item Also use flexible function of lagged pretax income when instrumenting
 	\item This builds on IV used in Gruber and Saez (2002)
 \end{itemize}
 \end{frame}
@@ -103,6 +103,7 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 	\begin{equation}
 		\Delta y_{ia} = x_i^' \alpha + \Delta w_{ia}^' \beta + \Delta I_{ia} \delta_0 + \Phi(P_{i, a-1}) + \eta_{ia}
 	\end{equation}
+	where $\Phi()$ is a very flexible polynomial in lagged pretax income
 \end{frame}
 
 \begin{frame}{Methodology IV}
@@ -112,7 +113,7 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 		\item Minor issues with data and model:
 		\begin{enumerate}[(1)]
 			\item Vast majority of EITC recipients receive their credit after filing taxes the following year; thus, authors link test scores with income earned in previous year
-			\item Only observe child achievement scores every other year; thus, authors year two-year differences
+			\item Only observe child achievement scores every other year; thus, authors use two-year differences
 		\end{enumerate}
 	\end{itemize}
 \end{frame}
@@ -136,24 +137,22 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 \frametitle{Data II}
 \begin{itemize}
 	\item Restrict sample to children observed in at least two consecutive survey years, since using FEs
-	\item Restrict sample to those children whose mothers did not change marital status between test score measures
-	\item Noticeable income increase in sample (increases faster than price levels) and show it is largely attributable to mothers in the sample aging
+	\item Restrict sample to those children whose mothers did not change marital status between test score measures because changes in family income are likely to mean something very different when there is a change of marital status relative to when there is not
+	\item There is a noticeable income increase in the sample (increases faster than price levels) and authors show it is largely attributable to mothers in the sample aging
 	\item Average child age in sample is 11
-	\item Over half of sample are minorites due to oversampling of minorities in NSLY
+	\item Over half of sample are minorities due to oversampling of minorities in NSLY
 \end{itemize}
 \end{frame}
 
 
 \section{Results}
 
-\iffalse
 \begin{frame}
 \frametitle{OLS Results I}
 	\begin{figure}
-		\includegraphics[scale=0.3]{../Tables/table1.png} %unit of change in income is $1000
+		\includegraphics[scale=0.5]{../Tables/table1} %unit of change in income is $1000
 	\end{figure}
 \end{frame}
-\fi
 
 \begin{frame}
 \frametitle{OLS Results II}
@@ -170,7 +169,7 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 \begin{frame}
 \frametitle{IV Estmates: Contemporaneous Effects}
 	\begin{figure}
-		\includegraphics[scale=0.4]{../Tables/table2.png}
+		\includegraphics[scale=0.45]{../Tables/table2.png}
 	\end{figure}
 \end{frame}
 
@@ -193,14 +192,14 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 \begin{frame}
 \frametitle{IV Estimates: Contemporaneous Effects and Controls}
 \begin{figure}
-	\includegraphics[scale=0.3]{../Tables/table3.png} %Table 4
+	\includegraphics[scale=0.4]{../Tables/table3.png} %Table 4
 \end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{IV Estimates: Contemporaneous and Lasting Effects}
 \begin{figure}
-	\includegraphics[scale=0.3]{../Tables/table4.png} %Table 5
+	\includegraphics[scale=0.4]{../Tables/table4.png} %Table 5
 \end{figure}
 \end{frame}
 
@@ -210,14 +209,14 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 	\item In table 5, the authors allow for lasting effects of income changes
 	\item The results are largely consistent, but more precise
 	\item Larger contemporaneous effects than lasting effects
-	\item The simple "contemporaneous effects" model provides reasonable good estimates of short-run effects of income
+	\item The simple "contemporaneous effects" model provides reasonably good estimates of short-run effects of income
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{IV Estimates: Heterogeneous Effects}
 \begin{figure}
-	\includegraphics[scale=0.3]{../Tables/table5.png} %Table 6
+	\includegraphics[scale=0.34]{../Tables/table5.png} %Table 6
 \end{figure}
 \end{frame}
 
@@ -226,7 +225,7 @@ Gordan B. Dahl and Lance Lochner (American Economic Review, 2012)
 \begin{itemize}
 	\item The extent of the impact of a \$1000 increase in current income reported as ``Percent in EITC Range" for each subgroup
 	\item Higher socioeconomic status (SES) groups have lower PEITCR
-	\item This is reflected in higher SEs for those groups point estimates
+	\item This is reflected in higher SEs for those groups' point estimates
 \end{itemize}
 \end{frame}
 
